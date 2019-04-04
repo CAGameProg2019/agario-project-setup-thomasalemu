@@ -29,3 +29,10 @@ function update() {
 window.addEventListener('load', function(event) {
     init();
 });
+
+let pos = new Vector(5, 7);
+let vel = new Vector(1, 1);
+vel.scale(2);
+vel.print(); // <2, 2>
+pos.subVector(vel);
+pos.print();  // <3, 5>
