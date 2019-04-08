@@ -10,8 +10,7 @@ let foods = [] ;
 let colors = [
     'blue',
     'green',
-    'red',
-    'black',
+    'red'
 ];
 
 function randomColor(){
@@ -19,14 +18,13 @@ function randomColor(){
     return colors[index];
 }
 
-
-for (var i=0;i<100;i++){
-    function init(){
+function init(){
+    for (var i=0;i<100;i++){
         let x = Math.random()* canvas.width;
         let y = Math.random()* canvas.height;
         foods.push(new Food(x,y,20,randomColor()));
-        update();    
     }
+    update();
 }
 
 // function init() {
@@ -39,7 +37,9 @@ for (var i=0;i<100;i++){
 function update() {
     c.clearRect(0,0,canvas.width,canvas.height);
 
-    foods[0].draw(c);
+    for (var i=0; i<foods.length;i++){
+        foods[i].draw(c);
+    }
 
     requestAnimationFrame(update);
 }
