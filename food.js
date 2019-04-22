@@ -11,6 +11,9 @@ class Food extends Vector {
         c.beginPath();
         c.arc(this.x,this.y,this.radius, 0, Math.PI*2, false);
         c.closePath();
+        c.strokeStyle="green";
+        c.lineWidth = 5
+        c.stroke();
         c.fill();
 
     }

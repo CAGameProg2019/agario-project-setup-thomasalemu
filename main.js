@@ -7,14 +7,21 @@ canvas.height = window.innerHeight;
 
 const FOOD_COUNT = 100;
 let mpos;
-
+let name1;
 let player;
 let foods = [] ;
 
 let colors = [
     'red',
     '#459C42'
+
 ];
+
+let strokeColors = [
+    '#666666',
+    '#ffd700',
+    '#7fffd4'
+]
 
 let name;
 
@@ -31,14 +38,16 @@ function generateFood(){
 
 function init(){
 
-    function name(){
-        name=prompt('what is your name?');
-        this.name=name;
-    }
+    // function name(){
+    //     name=prompt('what is your name?');
+    //     this.name=name;
+    // }
     mpos= new Vector(canvas.width/2, canvas.height/2);
-    // name=prompt('What is your name?');
+    name1=prompt('What is your name?');
 
-    player = new Player(canvas.width/2, canvas.height/2,25,randomColor(),name());
+    let color = randomColor();
+    let stroke = strokeColors[colors.indexOf(color)]
+    player = new Player(canvas.width/2, canvas.height/2,25,color,stroke,name1,10);
 
     for (var i=0;i<FOOD_COUNT;i++){
         generateFood();
@@ -49,7 +58,7 @@ function init(){
 function update(){
 
     c.clearRect(0,0,canvas.width,canvas.height);
-
+    player.update(mpos);
 
     for (var i=0; i<foods.length;i++){
         let eaten = player.intersects(foods[i]);
@@ -68,10 +77,6 @@ function update(){
     }
 
     player.draw(c);
-    player.x= mpos.x;
-    player.y= mpos.y;
-    Player.name.x=mpos.x;
-    Player.name.y=mpos.y;
     requestAnimationFrame(update);
 }
 
