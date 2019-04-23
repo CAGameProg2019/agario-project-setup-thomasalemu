@@ -11,6 +11,11 @@ let name1;
 let player;
 let foods = [] ;
 
+let keyPressed = {
+    s:false,
+    d:false
+}
+
 let colors = [
     'red',
     '#459C42'
@@ -60,6 +65,15 @@ function update(){
     c.clearRect(0,0,canvas.width,canvas.height);
     player.update(mpos);
 
+    if (keyPressed.s === true) {
+        player.radius-=1
+    }//else if (player.radius==0){
+        //player.radius=10
+    //};
+    if (keyPressed.d === true) {
+        player.radius+=1
+    }
+
     for (var i=0; i<foods.length;i++){
         let eaten = player.intersects(foods[i]);
         if(!eaten){
@@ -88,4 +102,22 @@ window.addEventListener('load', function() {
         mpos.y= event.clientY-canvas.offsetTop;
         // console.log(mpos.toString());
     });
+});
+
+window.addEventListener('keydown',function(event){
+    if (event.key === "s"){
+    keyPressed.s = true;
+    }
+    if (event.key === "d"){
+    keyPressed.d = true;
+    }
+});
+
+window.addEventListener('keyup',function(event){
+    if (event.key === "s"){
+    keyPressed.s = false
+    }
+    if (event.key === "d"){
+    keyPressed.d = false;
+    }
 });
