@@ -13,7 +13,8 @@ let foods = [] ;
 
 let keyPressed = {
     s:false,
-    d:false
+    d:false,
+    r:false
 }
 
 let colors = [
@@ -73,7 +74,10 @@ function update(){
     if (keyPressed.d === true) {
         player.radius+=1
     }
-
+    if (keyPressed.r === true) {
+        alert("reeeeeeeeee");
+        keyPressed.r=false;
+    }
     for (var i=0; i<foods.length;i++){
         let eaten = player.intersects(foods[i]);
         if(!eaten){
@@ -111,6 +115,9 @@ window.addEventListener('keydown',function(event){
     if (event.key === "d"){
     keyPressed.d = true;
     }
+    if (event.key === "r"){
+    keyPressed.r = true;
+    }
 });
 
 window.addEventListener('keyup',function(event){
@@ -118,6 +125,9 @@ window.addEventListener('keyup',function(event){
     keyPressed.s = false
     }
     if (event.key === "d"){
-    keyPressed.d = false;
+    keyPressed.d =  false;
+    }
+    if (event.key === "r"){
+    keyPressed.r =  false;
     }
 });
